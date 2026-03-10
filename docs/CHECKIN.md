@@ -23,7 +23,7 @@ Passenger verification required
 
 3. Show passenger information card:
 
-Passenger: Veronica  
+Passenger: Verónica Forner
 Destination: Maldives  
 Status: Pending validation
 
@@ -42,7 +42,7 @@ When the button is clicked:
 2. After about 1.5 seconds show success state:
 
 Passenger verified  
-Veronica  
+Verónica Forner
 VIP Maldives Experience confirmed
 
 3. Show a small resort-style message:

@@ -64,7 +64,7 @@ La página [checkin.html](checkin.html) simula un proceso de check-in de aeropue
 - Alto contraste para fácil lectura del código QR
 
 **Flujo de usuario:**
-1. Ver información del pasajero (Veronica → Maldives)
+1. Ver información del pasajero (Verónica Forner → Maldives)
 2. Click en "Validate Boarding Pass"
 3. Estado de carga con spinner
 4. Confirmación de verificación exitosa
@@ -291,7 +291,7 @@ Overlay text:
 
 Maldives VIP Experience
 
-Pasajera VIP: Veronica  
+Pasajera VIP: Verónica Forner
 Empleado de confianza: [nombre]
 
 Misión:

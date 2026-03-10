@@ -8,8 +8,8 @@
 const defaultProgress = {
     completedSteps: [], // Índices de experiencias completadas
     completedGames: {}, // { experienciaId: [gameIndex1, gameIndex2, ...] }
-    vipName: 'Veronica',
-    employeeName: ''
+    vipName: 'Verónica Forner',
+    employeeName: 'Agus Palomo Spain'
 };
 
 /**
