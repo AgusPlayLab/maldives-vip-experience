@@ -1,0 +1,25 @@
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+npm-debug.log*
+
+# Configuración local (credenciales de Supabase personalizadas)
+.env
+.env.local
+
+# Archivos temporales
+*.tmp
+*.temp
+
+# Node modules (si se agregan dependencias futuras)
+node_modules/
