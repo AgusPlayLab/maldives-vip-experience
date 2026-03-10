@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Maldives VIP Experience - Una experiencia de lujo interactiva en las Maldivas">
+    <title>Maldives VIP Experience</title>
+    
+    <!-- Estilos -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Supabase Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    
+    <!-- ============================================
+         HERO SECTION - CABECERA PRINCIPAL
+         ============================================ -->
+    <section class="hero" style="background-image: url('../assets/images/hero-beach.jpg');">
+        <div class="hero-content">
+            <h1>🏝️ Maldives VIP Experience</h1>
+            
+            <div class="hero-info">
+                <p><strong>Pasajera VIP:</strong> Veronica</p>
+                <p><strong>Empleado de confianza:</strong> <span id="employeeName">[nombre]</span></p>
+                <br>
+                <p><strong>Misión:</strong></p>
+                <p>Garantizar que la experiencia Maldives sea inolvidable.</p>
+            </div>
+            
+            <button id="btnComenzarViaje" class="btn-primary">
+                Comenzar viaje ✈️
+            </button>
+            
+            <!-- Toggle de audio opcional -->
+            <div style="margin-top: 1.5rem;">
+                <button onclick="toggleAudio()" class="btn-primary" style="background: rgba(255,255,255,0.2); padding: 0.5rem 1.5rem;">
+                    🔊 Audio ambiente
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- ============================================
+         ITINERARIO - BARRA DE PROGRESO
+         ============================================ -->
+    <section id="itinerary" class="itinerary">
+        <div class="itinerary-container">
+            <h2>📍 Tu Itinerario de Viaje</h2>
+            <div id="progressBar" class="progress-bar">
+                <!-- El itinerario se genera dinámicamente con JavaScript -->
+            </div>
+        </div>
+    </section>
+    
+    <!-- ============================================
+         CONTENIDO PRINCIPAL DINÁMICO
+         ============================================ -->
+    <main id="mainContent">
+        <!-- El contenido de cada experiencia se carga aquí dinámicamente -->
+    </main>
+    
+    <!-- ============================================
+         MODAL PARA JUEGOS
+         ============================================ -->
+    <div id="gameModal" class="modal">
+        <div class="modal-content">
+            <button id="modalClose" class="modal-close">&times;</button>
+            <div id="modalBody">
+                <!-- Contenido del juego se carga aquí -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- ============================================
+         SCRIPTS
+         ============================================ -->
+    
+    <!-- Configuración de experiencias -->
+    <script src="experiencias.js"></script>
+    
+    <!-- Integración Supabase -->
+    <script src="supabase.js"></script>
+    
+    <!-- Lógica principal de la aplicación -->
+    <script src="script.js"></script>
+    
+</body>
+</html>
