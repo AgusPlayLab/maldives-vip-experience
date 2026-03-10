@@ -4,7 +4,7 @@
 
 // IMPORTANTE: Reemplaza con la URL de tu Edge Function
 // Ejemplo: https://tuproyecto.supabase.co/functions/v1/submit-contact-message
-const EDGE_FUNCTION_URL = "https://febogdjpoxbyfhetwgip.supabase.co/functions/v1/submit-maldivas-feedback";
+const EDGE_FUNCTION_URL = "https://febogdjpoxbyfhetwgip.supabase.co/functions/v1/submit-maldives-feedback";
 
 // Variables de tiempo para rate limiting del cliente
 let lastSubmitTime = 0;
