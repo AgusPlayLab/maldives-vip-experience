@@ -1,4 +1,189 @@
-Create a lightweight interactive travel experience website called **Maldives VIP Experience**.
+# 🏝️ Maldives VIP Experience
+
+Una experiencia web interactiva de lujo en las Maldivas con sistema de progreso y mini-juegos.
+
+## 📁 Estructura del Proyecto (Profesional)
+
+```text
+maldives-vip-experience/
+├── index.html              # Página principal (hub de experiencias)
+├── css/
+│   └── style.css          # Estilos globales del proyecto
+├── js/
+│   ├── shared.js          # Funciones compartidas y gestión de progreso
+│   ├── experiencias.js    # Configuración de experiencias y juegos
+│   └── supabase.js        # Integración con base de datos (opcional)
+├── pages/
+│   ├── vuelo.html         # Experiencia: Vuelo a Maldivas
+│   ├── hidroavion.html    # Experiencia: Traslado en hidroavión
+│   ├── villa.html         # Experiencia: Check-in en la villa
+│   ├── actividades.html   # Experiencia: Playa y actividades
+│   ├── spa.html           # Experiencia: Spa
+│   ├── cena.html          # Experiencia: Cena en la playa
+│   ├── atardecer.html     # Experiencia: Atardecer
+│   ├── album.html         # Experiencia: Álbum del viaje
+│   └── feedback.html      # Experiencia: Opinión final
+├── assets/
+│   ├── images/            # Imágenes de experiencias (10 fotos)
+│   └── memories/          # Fotos del álbum (5 fotos)
+└── docs/
+    ├── ARQUITECTURA.md    # Documentación de arquitectura
+    ├── QUICKSTART.md      # Guía de inicio rápido
+    ├── SUPABASE_SETUP.md  # Configuración de base de datos
+    └── WELCOME.html       # Página de bienvenida del proyecto
+```
+
+## ✨ Características
+
+- ✅ **Diseño Multi-Página**: Cada experiencia tiene su propia página HTML
+- ✅ **Grid Visual**: Vista de miniaturas con todas las experiencias
+- ✅ **Sistema Híbrido**: Experiencias libres + experiencias bloqueadas
+- ✅ **Progreso Persistente**: Guarda automáticamente en localStorage
+- ✅ **9 Experiencias Interactivas**: Con múltiples mini-juegos
+- ✅ **Responsive**: Optimizado para móvil y desktop
+- ✅ **Modular y Escalable**: Fácil de expandir
+
+## 🚀 Inicio Rápido
+
+### 1. Agregar Imágenes
+
+Descarga 15 imágenes de Maldivas y colócalas en:
+- `assets/images/` - 10 imágenes principales
+- `assets/memories/` - 5 fotos del álbum
+
+**Fuentes gratuitas:**
+- [Unsplash](https://unsplash.com/s/photos/maldives)
+- [Pexels](https://www.pexels.com/search/maldives/)
+
+### 2. Abrir el Proyecto
+
+Simplemente abre `index.html` en tu navegador.
+
+**O usa un servidor local:**
+
+```bash
+# Con Python
+python -m http.server 8000
+
+# Con Node.js
+npx serve -p 8000
+
+# Con VS Code
+# Extensión: Live Server → Click derecho en index.html → "Open with Live Server"
+```
+
+Luego abre: <http://localhost:8000>
+
+### 3. Configurar Supabase (Opcional)
+
+Para guardar el feedback en una base de datos:
+
+1. Lee [docs/SUPABASE_SETUP.md](docs/SUPABASE_SETUP.md)
+2. Edita `js/supabase.js` con tus credenciales
+
+**El proyecto funciona perfectamente sin Supabase.**
+
+## 📖 Documentación
+
+- [docs/QUICKSTART.md](docs/QUICKSTART.md) - Guía de inicio rápido completa
+- [docs/ARQUITECTURA.md](docs/ARQUITECTURA.md) - Arquitectura y cómo expandir
+- [docs/SUPABASE_SETUP.md](docs/SUPABASE_SETUP.md) - Configuración de base de datos
+- [docs/WELCOME.html](docs/WELCOME.html) - Página de bienvenida interactiva
+
+## 🎮 Agregar Nuevos Juegos
+
+### Agregar juego a experiencia existente:
+
+1. Edita `js/experiencias.js`
+2. Busca la experiencia (ej: `actividades`)
+3. Agrega al array `games`:
+
+```javascript
+{
+    title: 'Buceo profundo',
+    description: 'Explora el arrecife de coral',
+    type: 'interactive',
+    image: '../assets/images/buceo.jpg'
+}
+```
+
+4. Coloca la imagen en `assets/images/buceo.jpg`
+5. ¡Recarga! El juego aparece automáticamente
+
+Ver [docs/ARQUITECTURA.md](docs/ARQUITECTURA.md) para crear nuevas experiencias completas.
+
+## 🌐 Publicar en GitHub Pages
+
+### Configuración:
+
+1. Sube el proyecto a GitHub
+2. Ve a **Settings** > **Pages**
+3. Selecciona la rama `main` y carpeta **/ (root)**
+4. ¡Listo! Tu sitio estará en: `https://tu-usuario.github.io/maldives-vip-experience/`
+
+**Nota:** Como `index.html` está en la raíz, GitHub Pages lo detectará automáticamente como página principal.
+
+## 🔓 Sistema de Experiencias
+
+**Experiencias Libres** (siempre accesibles):
+- ✈️ Vuelo a Maldivas
+- 🌊 Playa y actividades
+- 🌺 Spa
+- 📸 Álbum del viaje
+
+**Experiencias Bloqueadas** (secuenciales):
+- 🛩️ Hidroavión (requiere completar vuelo)
+- 🏝️ Villa (requiere completar hidroavión)
+- 🍽️ Cena en la playa
+- 🌅 Atardecer
+- 📝 Feedback (final)
+
+## 🛠️ Tecnologías
+
+- **HTML5** - Estructura
+- **CSS3** - Estilos y animaciones
+- **JavaScript Vanilla** - Lógica
+- **localStorage** - Persistencia de progreso
+- **Supabase** (opcional) - Base de datos
+
+## 🎨 Paleta de Colores
+
+```css
+--turquoise: #40E0D0
+--ocean-blue: #006994
+--sand-beige: #F5DEB3
+--white: #FFFFFF
+```
+
+## 📱 Compatibilidad
+
+- ✅ Chrome/Edge (versiones recientes)
+- ✅ Firefox (versiones recientes)
+- ✅ Safari (versiones recientes)
+- ✅ Móviles (iOS/Android)
+
+## 💡 Próximas Mejoras
+
+- [ ] Más tipos de juegos interactivos
+- [ ] Sistema de puntos o logros
+- [ ] Sonidos ambiente del océano
+- [ ] Compartir en redes sociales
+- [ ] Modo oscuro
+- [ ] Soporte multi-idioma
+
+## 📄 Licencia
+
+Este proyecto es de código abierto para uso educativo y personal.
+
+## 👥 Créditos
+
+Creado con ❤️ para experiencias VIP inolvidables.
+
+**Imágenes:** [Unsplash](https://unsplash.com), [Pexels](https://www.pexels.com) (agregar tus propias imágenes)
+
+---
+
+🏝️ **¡Disfruta creando experiencias inolvidables en las Maldivas!** ✨
 
 The project must work as a **static website compatible with GitHub Pages** and be easy to edit using **VSCode with GitHub Copilot**.
 

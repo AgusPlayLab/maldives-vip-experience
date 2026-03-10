@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spa - Maldives VIP Experience</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     
@@ -24,8 +24,8 @@
         </button>
     </div>
     
-    <script src="experiencias.js"></script>
-    <script src="shared.js"></script>
+    <script src="../js/experiencias.js"></script>
+    <script src="../js/shared.js"></script>
     <script>
         const EXPERIENCIA_ID = 'spa';
         const EXP_INDEX = 4;
@@ -38,7 +38,7 @@
                 marcarExperienciaCompletada(EXP_INDEX);
                 mostrarNotificacion('¡Experiencia completada! 🎉');
                 setTimeout(() => {
-                    window.location.href = 'index.html';
+                    window.location.href = '../index.html';
                 }, 1500);
             });
         });

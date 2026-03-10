@@ -3,38 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Traslado en Hidroavión - Maldives VIP Experience</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Check-in en la Villa - Maldives VIP Experience</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     
     <div class="experience-page">
         <div class="experience-header">
-            <div class="icon">🛩️</div>
-            <h1>Traslado en Hidroavión</h1>
-            <p>Vista aérea del paraíso. Las aguas cristalinas te esperan desde el cielo.</p>
+            <div class="icon">🏝️</div>
+            <h1>Check-in en la Villa</h1>
+            <p>Tu hogar sobre el agua. Lujo y tranquilidad en perfecta armonía.</p>
         </div>
         
         <div id="gamesContainer" class="games-grid"></div>
         
         <button id="btnCompletarExp" class="btn-primary btn-completar-experiencia">
-            Aterrizar en el resort
+            Acomodarse en la villa
         </button>
     </div>
     
-    <script src="experiencias.js"></script>
-    <script src="shared.js"></script>
+    <script src="../js/experiencias.js"></script>
+    <script src="../js/shared.js"></script>
     <script>
-        const EXPERIENCIA_ID = 'hidroavion';
-        const EXP_INDEX = 1;
+        const EXPERIENCIA_ID = 'checkin';
+        const EXP_INDEX = 2;
         
         document.addEventListener('DOMContentLoaded', () => {
-            crearNavegacion('🛩️ Hidroavión');
+            crearNavegacion('🏝️ Villa');
             cargarJuegos();
             document.getElementById('btnCompletarExp').addEventListener('click', () => {
                 marcarExperienciaCompletada(EXP_INDEX);
-                mostrarNotificacion('¡Aterrizaje exitoso! 🎉');
-                setTimeout(() => window.location.href = 'index.html', 1500);
+                mostrarNotificacion('¡Bienvenido a tu villa! 🎉');
+                setTimeout(() => window.location.href = '../index.html', 1500);
             });
         });
         

@@ -7,14 +7,14 @@
     <title>Maldives VIP Experience</title>
     
     <!-- Estilos -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     
     <!-- ============================================
          HERO SECTION - CABECERA PRINCIPAL
          ============================================ -->
-    <section class="hero" style="background-image: url('../assets/images/hero-beach.jpg');">
+    <section class="hero" style="background-image: url('assets/images/hero-beach.jpg');">
         <div class="hero-content">
             <h1>🏝️ Maldives VIP Experience</h1>
             
@@ -64,8 +64,8 @@
     <!-- ============================================
          SCRIPTS
          ============================================ -->
-    <script src="experiencias.js"></script>
-    <script src="shared.js"></script>
+    <script src="js/experiencias.js"></script>
+    <script src="js/shared.js"></script>
     <script>
         // Inicializar página principal
         document.addEventListener('DOMContentLoaded', () => {
@@ -116,7 +116,7 @@
                 if (estaDesbloqueada) {
                     card.style.cursor = 'pointer';
                     card.addEventListener('click', () => {
-                        window.location.href = exp.page;
+                        window.location.href = 'pages/' + exp.page;
                     });
                 } else {
                     card.title = 'Completa la experiencia anterior para desbloquear';

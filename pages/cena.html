@@ -3,38 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Check-in en la Villa - Maldives VIP Experience</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Cena en la Playa - Maldives VIP Experience</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     
     <div class="experience-page">
         <div class="experience-header">
-            <div class="icon">🏝️</div>
-            <h1>Check-in en la Villa</h1>
-            <p>Tu hogar sobre el agua. Lujo y tranquilidad en perfecta armonía.</p>
+            <div class="icon">🍽️</div>
+            <h1>Cena en la Playa</h1>
+            <p>Gastronomía bajo las estrellas. Sabores exquisitos frente al mar.</p>
         </div>
         
         <div id="gamesContainer" class="games-grid"></div>
         
         <button id="btnCompletarExp" class="btn-primary btn-completar-experiencia">
-            Acomodarse en la villa
+            Finalizar cena
         </button>
     </div>
     
-    <script src="experiencias.js"></script>
-    <script src="shared.js"></script>
+    <script src="../js/experiencias.js"></script>
+    <script src="../js/shared.js"></script>
     <script>
-        const EXPERIENCIA_ID = 'checkin';
-        const EXP_INDEX = 2;
+        const EXPERIENCIA_ID = 'cena';
+        const EXP_INDEX = 5;
         
         document.addEventListener('DOMContentLoaded', () => {
-            crearNavegacion('🏝️ Villa');
+            crearNavegacion('🍽️ Cena en la Playa');
             cargarJuegos();
             document.getElementById('btnCompletarExp').addEventListener('click', () => {
                 marcarExperienciaCompletada(EXP_INDEX);
-                mostrarNotificacion('¡Bienvenido a tu villa! 🎉');
-                setTimeout(() => window.location.href = 'index.html', 1500);
+                mostrarNotificacion('¡Cena deliciosa! 🎉');
+                setTimeout(() => window.location.href = '../index.html', 1500);
             });
         });
         

@@ -3,49 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cena en la Playa - Maldives VIP Experience</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Playa y Actividades - Maldives VIP Experience</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     
     <div class="experience-page">
         <div class="experience-header">
-            <div class="icon">🍽️</div>
-            <h1>Cena en la Playa</h1>
-            <p>Gastronomía bajo las estrellas. Sabores exquisitos frente al mar.</p>
+            <div class="icon">🌊</div>
+            <h1>Playa y Actividades</h1>
+            <p>Aventuras bajo el sol. Snorkel, exploración y diversión en el paraíso tropical.</p>
         </div>
         
-        <div id="gamesContainer" class="games-grid"></div>
+        <div id="gamesContainer" class="games-grid">
+            <!-- Los juegos se generan dinámicamente -->
+        </div>
         
         <button id="btnCompletarExp" class="btn-primary btn-completar-experiencia">
-            Finalizar cena
+            Finalizar actividades
         </button>
     </div>
     
-    <script src="experiencias.js"></script>
-    <script src="shared.js"></script>
+    <script src="../js/experiencias.js"></script>
+    <script src="../js/shared.js"></script>
     <script>
-        const EXPERIENCIA_ID = 'cena';
-        const EXP_INDEX = 5;
+        const EXPERIENCIA_ID = 'actividades';
+        const EXP_INDEX = 3;
         
         document.addEventListener('DOMContentLoaded', () => {
-            crearNavegacion('🍽️ Cena en la Playa');
+            crearNavegacion('🌊 Playa y Actividades');
             cargarJuegos();
+            
             document.getElementById('btnCompletarExp').addEventListener('click', () => {
                 marcarExperienciaCompletada(EXP_INDEX);
-                mostrarNotificacion('¡Cena deliciosa! 🎉');
-                setTimeout(() => window.location.href = 'index.html', 1500);
+                mostrarNotificacion('¡Experiencia completada! 🎉');
+                setTimeout(() => {
+                    window.location.href = '../index.html';
+                }, 1500);
             });
         });
         
         function cargarJuegos() {
             const exp = experiencias.find(e => e.id === EXPERIENCIA_ID);
             if (!exp || !exp.games) return;
+            
             const container = document.getElementById('gamesContainer');
+            
             exp.games.forEach((game, index) => {
                 const card = document.createElement('div');
                 card.className = 'game-card';
-                if (juegoEstaCompletado(EXPERIENCIA_ID, index)) card.classList.add('completed');
+                
+                if (juegoEstaCompletado(EXPERIENCIA_ID, index)) {
+                    card.classList.add('completed');
+                }
+                
                 card.innerHTML = `
                     ${game.image ? `<img src="${game.image}" alt="${game.title}" class="game-image">` : ''}
                     <div class="game-info">
@@ -53,18 +64,26 @@
                         <p>${game.description}</p>
                     </div>
                 `;
-                card.addEventListener('click', () => abrirJuego(game, index));
+                
+                card.addEventListener('click', () => {
+                    abrirJuego(game, index);
+                });
+                
                 container.appendChild(card);
             });
         }
         
         function abrirJuego(game, index) {
-            abrirModal(game.title, crearContenidoJuego(game), () => {
+            const contenido = crearContenidoJuego(game);
+            
+            abrirModal(game.title, contenido, () => {
                 marcarJuegoCompletado(EXPERIENCIA_ID, index);
                 mostrarNotificacion('¡Actividad completada! 🎉');
+                // Recargar para mostrar el check
                 setTimeout(() => location.reload(), 800);
             });
         }
     </script>
+    
 </body>
 </html>

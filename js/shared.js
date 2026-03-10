@@ -164,7 +164,7 @@ function crearNavegacion(tituloActual = '') {
     nav.className = 'top-nav';
     nav.innerHTML = `
         <div class="nav-container">
-            <a href="index.html" class="nav-home">
+            <a href="../index.html" class="nav-home">
                 <span class="nav-icon">🏝️</span>
                 <span class="nav-text">Maldives VIP</span>
             </a>
@@ -176,7 +176,7 @@ function crearNavegacion(tituloActual = '') {
     document.body.insertBefore(nav, document.body.firstChild);
     
     document.getElementById('btnVolverInicio').addEventListener('click', () => {
-        window.location.href = 'index.html';
+        window.location.href = '../index.html';
     });
 }
 
@@ -296,7 +296,9 @@ function reiniciarProgreso() {
         localStorage.removeItem('maldivesProgress');
         mostrarNotificacion('Progreso reiniciado');
         setTimeout(() => {
-            window.location.href = 'index.html';
+            // Detectar si estamos en /pages o en raíz
+            const indexPath = window.location.pathname.includes('/pages/') ? '../index.html' : 'index.html';
+            window.location.href = indexPath;
         }, 1500);
     }
 }

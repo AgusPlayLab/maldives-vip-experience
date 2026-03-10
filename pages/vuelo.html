@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Playa y Actividades - Maldives VIP Experience</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Vuelo a Maldivas - Maldives VIP Experience</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     
     <div class="experience-page">
         <div class="experience-header">
-            <div class="icon">🌊</div>
-            <h1>Playa y Actividades</h1>
-            <p>Aventuras bajo el sol. Snorkel, exploración y diversión en el paraíso tropical.</p>
+            <div class="icon">✈️</div>
+            <h1>Vuelo a Maldivas</h1>
+            <p>El viaje comienza. Prepárate para una experiencia inolvidable en el paraíso.</p>
         </div>
         
         <div id="gamesContainer" class="games-grid">
@@ -20,25 +20,25 @@
         </div>
         
         <button id="btnCompletarExp" class="btn-primary btn-completar-experiencia">
-            Finalizar actividades
+            Llegamos a destino
         </button>
     </div>
     
-    <script src="experiencias.js"></script>
-    <script src="shared.js"></script>
+    <script src="../js/experiencias.js"></script>
+    <script src="../js/shared.js"></script>
     <script>
-        const EXPERIENCIA_ID = 'actividades';
-        const EXP_INDEX = 3;
+        const EXPERIENCIA_ID = 'vuelo';
+        const EXP_INDEX = 0;
         
         document.addEventListener('DOMContentLoaded', () => {
-            crearNavegacion('🌊 Playa y Actividades');
+            crearNavegacion('✈️ Vuelo a Maldivas');
             cargarJuegos();
             
             document.getElementById('btnCompletarExp').addEventListener('click', () => {
                 marcarExperienciaCompletada(EXP_INDEX);
-                mostrarNotificacion('¡Experiencia completada! 🎉');
+                mostrarNotificacion('¡Despegamos! 🎉');
                 setTimeout(() => {
-                    window.location.href = 'index.html';
+                    window.location.href = '../index.html';
                 }, 1500);
             });
         });
@@ -78,8 +78,7 @@
             
             abrirModal(game.title, contenido, () => {
                 marcarJuegoCompletado(EXPERIENCIA_ID, index);
-                mostrarNotificacion('¡Actividad completada! 🎉');
-                // Recargar para mostrar el check
+                mostrarNotificacion('¡Gracias por compartir! 🎉');
                 setTimeout(() => location.reload(), 800);
             });
         }
