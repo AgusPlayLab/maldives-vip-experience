@@ -23,14 +23,16 @@ maldives-vip-experience/
 │   ├── cena.html          # Experiencia: Cena en la playa
 │   ├── atardecer.html     # Experiencia: Atardecer
 │   ├── album.html         # Experiencia: Álbum del viaje
-│   └── feedback.html      # Experiencia: Opinión final
+│   └── feedback.html      # Experiencia: Opinión final (con honeypot anti-spam)
 ├── assets/
-│   ├── images/            # Imágenes de experiencias (10 fotos)
+│   ├── images/            # Imágenes de experiencias (10 fotos + QR code)
 │   └── memories/          # Fotos del álbum (5 fotos)
 └── docs/
     ├── ARQUITECTURA.md    # Documentación de arquitectura
     ├── QUICKSTART.md      # Guía de inicio rápido
-    ├── SUPABASE_SETUP.md  # Configuración de base de datos
+    ├── SUPABASE_SETUP.md  # Configuración de base de datos con seguridad
+    ├── SUPABASE_CHECKLIST.md  # Checklist paso a paso para Supabase
+    ├── supabase-setup.sql # Script SQL completo (rate limiting, anti-spam)
     ├── CHECKIN.md         # Especificaciones de página check-in
     └── WELCOME.html       # Página de bienvenida del proyecto
 ```
@@ -102,20 +104,63 @@ npx serve -p 8000
 
 Luego abre: <http://localhost:8000>
 
-### 3. Configurar Supabase (Opcional)
+### 3. Configurar Supabase Edge Function (Recomendado)
 
-Para guardar el feedback en una base de datos:
+Para guardar el feedback de forma segura usando Edge Functions de Supabase:
 
-1. Lee [docs/SUPABASE_SETUP.md](docs/SUPABASE_SETUP.md)
-2. Edita `js/supabase.js` con tus credenciales
+**🚀 Opción Rápida (5 minutos):**
+```bash
+# 1. Crear cuenta en supabase.com y crear proyecto
+# 2. Ejecutar SQL: docs/contact-messages-table.sql
+# 3. Instalar CLI: npm install -g supabase
+# 4. Desplegar función:
+mkdir -p supabase/functions/submit-contact-message
+cp docs/edge-function.ts supabase/functions/submit-contact-message/index.ts
+supabase login
+supabase link --project-ref TU_PROJECT_REF
+supabase functions deploy submit-contact-message
 
-**El proyecto funciona perfectamente sin Supabase.**
+# 5. Configurar URL en js/supabase.js (línea 7):
+# const EDGE_FUNCTION_URL = "https://tuproyecto.supabase.co/functions/v1/submit-contact-message";
+```
+
+**📚 Documentación completa:**
+- 🚀 [Guía de Edge Function](docs/EDGE_FUNCTION_SETUP.md) - Configuración paso a paso
+- 📋 [Checklist rápido](docs/SUPABASE_CHECKLIST.md) - Lista de verificación
+- 📊 [Script SQL avanzado](docs/supabase-setup.sql) - Con rate limiting y validaciones 
+- 💡 [Script SQL simple](docs/contact-messages-table.sql) - Para principiantes
+
+**✨ Ventajas de usar Edge Function:**
+- ✅ Mayor seguridad (credenciales en servidor, no en cliente)
+- ✅ Rate limiting robusto (cliente + servidor)
+- ✅ Envío automático de emails de notificación
+- ✅ Honeypot anti-spam en servidor
+- ✅ Validaciones estrictas
+- ✅ Logs detallados para debugging
+
+**📝 Alternativa sin Edge Function:**
+Si prefieres simplicidad, puedes usar el cliente directo de Supabase (menos seguro):
+- [Guía de cliente directo](docs/SUPABASE_SETUP.md)
+
+**Nota:** El proyecto funciona perfectamente sin Supabase (los feedbacks se muestran en consola).
 
 ## 📖 Documentación
 
+### Guías de Inicio
 - [docs/QUICKSTART.md](docs/QUICKSTART.md) - Guía de inicio rápido completa
 - [docs/ARQUITECTURA.md](docs/ARQUITECTURA.md) - Arquitectura y cómo expandir
-- [docs/SUPABASE_SETUP.md](docs/SUPABASE_SETUP.md) - Configuración de base de datos
+
+### Configuración de Supabase
+- [docs/EDGE_FUNCTION_SETUP.md](docs/EDGE_FUNCTION_SETUP.md) - **⭐ Recomendado**: Guía completa de Edge Functions
+- [docs/SUPABASE_SETUP.md](docs/SUPABASE_SETUP.md) - Alternativa con cliente directo
+- [docs/SUPABASE_CHECKLIST.md](docs/SUPABASE_CHECKLIST.md) - Checklist paso a paso
+- [docs/supabase-setup.sql](docs/supabase-setup.sql) - Script SQL avanzado con seguridad
+- [docs/contact-messages-table.sql](docs/contact-messages-table.sql) - Script SQL simple
+- [docs/edge-function.ts](docs/edge-function.ts) - Código de la Edge Function
+
+### Otros
+- [docs/CHECKIN.md](docs/CHECKIN.md) - Especificaciones de página check-in
+- [docs/REESTRUCTURACION.md](docs/REESTRUCTURACION.md) - Historial de cambios de estructura
 - [docs/WELCOME.html](docs/WELCOME.html) - Página de bienvenida interactiva
 
 ## 🎮 Agregar Nuevos Juegos

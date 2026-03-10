@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feedback - Maldives VIP Experience</title>
     <link rel="stylesheet" href="../css/style.css">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
     
@@ -65,6 +64,9 @@
                 <textarea id="comentario" name="comentario" rows="5"></textarea>
             </div>
             
+            <!-- Honeypot field (hidden from users, bots will fill it) -->
+            <input type="text" id="hp_field" name="hp_field" style="display: none;" tabindex="-1" autocomplete="off">
+            
             <button type="submit" class="btn-primary" style="width: 100%;">
                 Enviar opinión
             </button>
@@ -92,29 +94,38 @@
                 actividadFavorita: document.getElementById('actividadFavorita').value,
                 nivelDiversion: document.getElementById('nivelDiversion').value,
                 repetiria: document.getElementById('repetiria').value,
-                comentario: document.getElementById('comentario').value
+                comentario: document.getElementById('comentario').value,
+                // Security fields
+                honeypot: document.getElementById('hp_field').value,
+                userAgent: navigator.userAgent,
+                source: 'maldives-vip-web'
             };
 
-            // Intentar guardar en Supabase
+            // Intentar guardar en Supabase Edge Function
             if (typeof guardarFeedback === 'function') {
                 const resultado = await guardarFeedback(formData);
                 
                 if (resultado.success) {
-                    mostrarNotificacion('¡Gracias por tu opinión! 💙', 'success');
+                    mostrarNotificacion('✅ ¡Feedback enviado correctamente!', 'success');
+                    marcarExperienciaCompletada(EXP_INDEX);
+                    setTimeout(() => {
+                        mostrarMensajeFinal();
+                    }, 2000);
                 } else {
-                    mostrarNotificacion('Guardado localmente (Supabase no configurado)', 'info');
-                    console.log('Feedback:', formData);
+                    // Mostrar error específico
+                    mostrarNotificacion(`❌ ${resultado.error}`, 'error');
+                    console.error('Error al enviar feedback:', resultado.error);
+                    console.log('Datos del formulario:', formData);
                 }
             } else {
-                mostrarNotificacion('¡Gracias por tu opinión! 💙', 'success');
-                console.log('Feedback:', formData);
+                // Fallback si supabase.js no está cargado
+                mostrarNotificacion('⚠️ Sistema de feedback no disponible', 'warning');
+                console.log('Feedback (sin guardar):', formData);
+                marcarExperienciaCompletada(EXP_INDEX);
+                setTimeout(() => {
+                    mostrarMensajeFinal();
+                }, 2000);
             }
-            
-            marcarExperienciaCompletada(EXP_INDEX);
-            
-            setTimeout(() => {
-                mostrarMensajeFinal();
-            }, 2000);
         }
         
         function mostrarMensajeFinal() {
