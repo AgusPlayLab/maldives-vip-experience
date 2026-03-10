@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIP Check-In - Maldives Experience</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 50%, #ff6b9d 100%);
+            padding: 1rem;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            animation: fadeIn 0.8s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .title {
+            text-align: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            margin-bottom: 1.5rem;
+        }
+
+        .passenger-info {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .passenger-info h2 {
+            color: #00bcd4;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #555;
+        }
+
+        .info-value {
+            color: #333;
+        }
+
+        .status-pending {
+            color: #ff9800;
+            font-weight: 600;
+        }
+
+        .status-verified {
+            color: #4caf50;
+            font-weight: 600;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #00d2ff, #3a7bd5);
+            color: white;
+            box-shadow: 0 4px 15px rgba(58, 123, 213, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(58, 123, 213, 0.6);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #ff6b9d, #c471ed);
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.4);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 157, 0.6);
+        }
+
+        .loading-state {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .loading-state.active {
+            display: block;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #00bcd4;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: #555;
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+
+        .success-state {
+            display: none;
+            text-align: center;
+        }
+
+        .success-state.active {
+            display: block;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .success-title {
+            color: #4caf50;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .success-name {
+            color: #333;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .success-message {
+            color: #555;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .resort-message {
+            background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid #00bcd4;
+            margin-bottom: 1.5rem;
+        }
+
+        .resort-message-title {
+            font-weight: 700;
+            color: #00838f;
+            margin-bottom: 0.5rem;
+        }
+
+        .resort-message-text {
+            color: #004d40;
+            line-height: 1.6;
+        }
+
+        .qr-container {
+            display: none;
+            text-align: center;
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            margin-bottom: 1.5rem;
+        }
+
+        .qr-container.active {
+            display: block;
+            animation: fadeInScale 0.6s ease;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .qr-title {
+            color: #333;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        #qrcode {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 1rem auto;
+        }
+
+        #qrcode img {
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        @media (max-width: 600px) {
+            .title {
+                font-size: 1.5rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+            .passenger-info h2 {
+                font-size: 1.2rem;
+            }
+
+            .btn {
+                padding: 0.9rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">✈️ VIP CHECK-IN VALIDATION</h1>
+        <p class="subtitle">Passenger verification required</p>
+
+        <!-- Initial State Card -->
+        <div id="initialCard" class="card">
+            <div class="passenger-info">
+                <h2>Passenger Information</h2>
+                <div class="info-row">
+                    <span class="info-label">Passenger:</span>
+                    <span class="info-value">Veronica</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Destination:</span>
+                    <span class="info-value">Maldives 🏝️</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Status:</span>
+                    <span class="info-value status-pending" id="status">Pending validation</span>
+                </div>
+            </div>
+            <button id="validateBtn" class="btn btn-primary">
+                Validate Boarding Pass
+            </button>
+        </div>
+
+        <!-- Loading State -->
+        <div id="loadingState" class="card loading-state">
+            <div class="spinner"></div>
+            <p class="loading-text">Verifying passenger...</p>
+        </div>
+
+        <!-- Success State -->
+        <div id="successCard" class="card success-state">
+            <div class="success-icon">✅</div>
+            <div class="success-title">Passenger verified</div>
+            <div class="success-name">Veronica</div>
+            <div class="success-message">VIP Maldives Experience confirmed</div>
+
+            <div class="resort-message">
+                <div class="resort-message-title">🏖️ Resort staff message:</div>
+                <div class="resort-message-text">
+                    Your villa is ready.<br>
+                    Enjoy the Maldives experience.
+                </div>
+            </div>
+        </div>
+
+        <!-- QR Code Container -->
+        <div id="qrContainer" class="qr-container">
+            <p class="qr-title">🎫 Scan this QR to begin your Maldives VIP journey</p>
+            <div id="qrcode"></div>
+        </div>
+
+        <!-- Restart Button -->
+        <button id="restartBtn" class="btn btn-secondary hidden">
+            Restart validation
+        </button>
+    </div>
+
+    <!-- QR Code Library -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+
+    <script>
+        const validateBtn = document.getElementById('validateBtn');
+        const restartBtn = document.getElementById('restartBtn');
+        const initialCard = document.getElementById('initialCard');
+        const loadingState = document.getElementById('loadingState');
+        const successCard = document.getElementById('successCard');
+        const qrContainer = document.getElementById('qrContainer');
+        const qrcodeDiv = document.getElementById('qrcode');
+
+        validateBtn.addEventListener('click', startValidation);
+        restartBtn.addEventListener('click', restartValidation);
+
+        function startValidation() {
+            // Hide initial card
+            initialCard.style.display = 'none';
+            
+            // Show loading state
+            loadingState.classList.add('active');
+
+            // After 1.5 seconds, show success
+            setTimeout(() => {
+                loadingState.classList.remove('active');
+                successCard.classList.add('active');
+
+                // After showing success, generate QR and show restart button
+                setTimeout(() => {
+                    generateQRCode();
+                    qrContainer.classList.add('active');
+                    restartBtn.classList.remove('hidden');
+                }, 500);
+            }, 1500);
+        }
+
+        function generateQRCode() {
+            // Clear previous QR if exists
+            qrcodeDiv.innerHTML = '';
+
+            // Generate new QR code
+            new QRCode(qrcodeDiv, {
+                text: 'https://agusplaylab.github.io/maldives-vip-experience/',
+                width: 200,
+                height: 200,
+                colorDark: '#00838f',
+                colorLight: '#ffffff',
+                correctLevel: QRCode.CorrectLevel.H
+            });
+        }
+
+        function restartValidation() {
+            // Hide all success elements
+            successCard.classList.remove('active');
+            qrContainer.classList.remove('active');
+            restartBtn.classList.add('hidden');
+
+            // Clear QR code
+            qrcodeDiv.innerHTML = '';
+
+            // Show initial card again
+            setTimeout(() => {
+                initialCard.style.display = 'block';
+            }, 300);
+        }
+    </script>
+</body>
+</html>

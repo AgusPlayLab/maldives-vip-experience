@@ -7,6 +7,7 @@ Una experiencia web interactiva de lujo en las Maldivas con sistema de progreso 
 ```text
 maldives-vip-experience/
 ├── index.html              # Página principal (hub de experiencias)
+├── checkin.html            # Página de check-in VIP con QR code
 ├── css/
 │   └── style.css          # Estilos globales del proyecto
 ├── js/
@@ -30,11 +31,13 @@ maldives-vip-experience/
     ├── ARQUITECTURA.md    # Documentación de arquitectura
     ├── QUICKSTART.md      # Guía de inicio rápido
     ├── SUPABASE_SETUP.md  # Configuración de base de datos
+    ├── CHECKIN.md         # Especificaciones de página check-in
     └── WELCOME.html       # Página de bienvenida del proyecto
 ```
 
 ## ✨ Características
 
+- ✅ **VIP Check-In Page**: Página de validación de embarque con QR code dinámico
 - ✅ **Diseño Multi-Página**: Cada experiencia tiene su propia página HTML
 - ✅ **Grid Visual**: Vista de miniaturas con todas las experiencias
 - ✅ **Sistema Híbrido**: Experiencias libres + experiencias bloqueadas
@@ -42,6 +45,30 @@ maldives-vip-experience/
 - ✅ **9 Experiencias Interactivas**: Con múltiples mini-juegos
 - ✅ **Responsive**: Optimizado para móvil y desktop
 - ✅ **Modular y Escalable**: Fácil de expandir
+
+## 🎫 Página VIP Check-In
+
+La página [checkin.html](checkin.html) simula un proceso de check-in de aeropuerto VIP antes de comenzar el viaje:
+
+- **Diseño tropical** inspirado en Maldivas con gradientes turquesa y sunset
+- **Validación de pasajero** con animaciones de carga
+- **Generación dinámica de QR code** que enlaza a la experiencia completa
+- **Mensajes del resort** para mayor inmersión
+- **Mobile-first** y completamente responsive
+
+**Características técnicas:**
+- HTML/CSS/JS vanilla (sin frameworks)
+- Librería QRCode.js para generar códigos QR
+- Animaciones CSS suaves y elegantes
+- Compatible con GitHub Pages sin configuración adicional
+
+**Flujo de usuario:**
+1. Ver información del pasajero (Veronica → Maldives)
+2. Click en "Validate Boarding Pass"
+3. Estado de carga con spinner
+4. Confirmación de verificación exitosa
+5. Generación automática de QR code
+6. Opción de reiniciar validación
 
 ## 🚀 Inicio Rápido
 
