@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vuelo a Maldivas - Maldives VIP Experience</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div class="experience-page">
+        <div class="experience-header">
+            <div class="icon">✈️</div>
+            <h1>Vuelo a Maldivas</h1>
+            <p>El viaje comienza. Prepárate para una experiencia inolvidable en el paraíso.</p>
+        </div>
+        
+        <div id="gamesContainer" class="games-grid">
+            <!-- Los juegos se generan dinámicamente -->
+        </div>
+        
+        <button id="btnCompletarExp" class="btn-primary btn-completar-experiencia">
+            Llegamos a destino
+        </button>
+    </div>
+    
+    <script src="experiencias.js"></script>
+    <script src="shared.js"></script>
+    <script>
+        const EXPERIENCIA_ID = 'vuelo';
+        const EXP_INDEX = 0;
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            crearNavegacion('✈️ Vuelo a Maldivas');
+            cargarJuegos();
+            
+            document.getElementById('btnCompletarExp').addEventListener('click', () => {
+                marcarExperienciaCompletada(EXP_INDEX);
+                mostrarNotificacion('¡Despegamos! 🎉');
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
+            });
+        });
+        
+        function cargarJuegos() {
+            const exp = experiencias.find(e => e.id === EXPERIENCIA_ID);
+            if (!exp || !exp.games) return;
+            
+            const container = document.getElementById('gamesContainer');
+            
+            exp.games.forEach((game, index) => {
+                const card = document.createElement('div');
+                card.className = 'game-card';
+                
+                if (juegoEstaCompletado(EXPERIENCIA_ID, index)) {
+                    card.classList.add('completed');
+                }
+                
+                card.innerHTML = `
+                    ${game.image ? `<img src="${game.image}" alt="${game.title}" class="game-image">` : ''}
+                    <div class="game-info">
+                        <h3>${game.title}</h3>
+                        <p>${game.description}</p>
+                    </div>
+                `;
+                
+                card.addEventListener('click', () => {
+                    abrirJuego(game, index);
+                });
+                
+                container.appendChild(card);
+            });
+        }
+        
+        function abrirJuego(game, index) {
+            const contenido = crearContenidoJuego(game);
+            
+            abrirModal(game.title, contenido, () => {
+                marcarJuegoCompletado(EXPERIENCIA_ID, index);
+                mostrarNotificacion('¡Gracias por compartir! 🎉');
+                setTimeout(() => location.reload(), 800);
+            });
+        }
+    </script>
+    
+</body>
+</html>

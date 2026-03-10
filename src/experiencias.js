@@ -9,11 +9,14 @@ const experiencias = [
         icon: '✈️',
         description: 'El viaje comienza. Prepárate para una experiencia inolvidable.',
         image: 'assets/images/vuelo.jpg',
+        page: 'vuelo.html',
+        libre: true, // Siempre accesible
         games: [
             {
                 title: 'Bienvenida al vuelo',
                 description: 'Comparte tu entusiasmo: ¿Qué es lo que más te emociona de este viaje?',
-                type: 'text'
+                type: 'text',
+                image: '../assets/images/vuelo.jpg'
             }
         ]
     },
@@ -23,12 +26,15 @@ const experiencias = [
         icon: '🛩️',
         description: 'Vista aérea del paraíso. Las aguas cristalinas te esperan.',
         image: 'assets/images/hidroavion.jpg',
+        page: 'hidroavion.html',
+        libre: false, // Requiere completar anterior
         games: [
             {
                 title: 'Vista desde el cielo',
                 description: 'Observa las islas desde arriba. ¿Cuántas tonalidades de azul puedes identificar?',
                 type: 'choice',
-                options: ['2-3', '4-5', '6 o más']
+                options: ['2-3', '4-5', '6 o más'],
+                image: '../assets/images/hidroavion.jpg'
             }
         ]
     },
@@ -38,11 +44,14 @@ const experiencias = [
         icon: '🏝️',
         description: 'Tu hogar sobre el agua. Lujo y tranquilidad en perfecta armonía.',
         image: 'assets/images/villa.jpg',
+        page: 'villa.html',
+        libre: false,
         games: [
             {
                 title: 'Bienvenida a tu villa',
                 description: 'Explorar la villa y compartir: ¿Cuál es tu rincón favorito?',
-                type: 'text'
+                type: 'text',
+                image: '../assets/images/villa.jpg'
             }
         ]
     },
@@ -52,21 +61,26 @@ const experiencias = [
         icon: '🌊',
         description: 'Aventuras bajo el sol. Snorkel, exploración y diversión.',
         image: 'assets/images/playa.jpg',
+        page: 'actividades.html',
+        libre: true, // Actividades siempre disponibles
         games: [
             {
                 title: 'Snorkel',
                 description: 'Explora el arrecife de coral. Imagina que ves peces tropicales de colores brillantes.',
-                type: 'interactive'
+                type: 'interactive',
+                image: '../assets/images/playa.jpg'
             },
             {
                 title: 'Paseo por la playa',
                 description: 'Camina descalzo por la arena. Describe cómo te sientes.',
-                type: 'text'
+                type: 'text',
+                image: '../assets/images/playa.jpg'
             },
             {
                 title: 'Aventura en la isla',
                 description: 'Descubre los secretos de la isla. ¿Qué tesoro encontrarías?',
-                type: 'text'
+                type: 'text',
+                image: '../assets/images/playa.jpg'
             }
         ]
     },
@@ -76,12 +90,15 @@ const experiencias = [
         icon: '🌺',
         description: 'Momento de relajación total. Masajes y aromaterapia con vista al océano.',
         image: 'assets/images/spa.jpg',
+        page: 'spa.html',
+        libre: true, // Spa siempre disponible para relajarse
         games: [
             {
                 title: 'Respiración profunda',
                 description: 'Toma 10 segundos para respirar profundamente. Inhala... exhala...',
                 type: 'timer',
-                duration: 10
+                duration: 10,
+                image: '../assets/images/spa.jpg'
             }
         ]
     },
@@ -91,11 +108,14 @@ const experiencias = [
         icon: '🍽️',
         description: 'Gastronomía bajo las estrellas. Sabores exquisitos frente al mar.',
         image: 'assets/images/cena.jpg',
+        page: 'cena.html',
+        libre: false,
         games: [
             {
                 title: 'Brindis especial',
                 description: 'Cada viajero dice algo positivo sobre el viaje. ¿Qué destacarías tú?',
-                type: 'text'
+                type: 'text',
+                image: '../assets/images/cena.jpg'
             }
         ]
     },
@@ -105,12 +125,15 @@ const experiencias = [
         icon: '🌅',
         description: 'El momento mágico del día. Colores que pintan el cielo.',
         image: 'assets/images/atardecer.jpg',
+        page: 'atardecer.html',
+        libre: false,
         games: [
             {
                 title: 'Contemplación',
                 description: 'Mira el horizonte en silencio durante 5 segundos. Disfruta la paz.',
                 type: 'timer',
-                duration: 5
+                duration: 5,
+                image: '../assets/images/atardecer.jpg'
             }
         ]
     },
@@ -120,6 +143,8 @@ const experiencias = [
         icon: '📸',
         description: 'Recuerdos capturados. Las mejores fotos de tu aventura.',
         image: 'assets/images/album.jpg',
+        page: 'album.html',
+        libre: true, // Siempre puede ver el álbum
         games: []
     },
     {
@@ -128,6 +153,8 @@ const experiencias = [
         icon: '📝',
         description: 'Tu opinión importa. Comparte tu experiencia VIP.',
         image: 'assets/images/feedback.jpg',
+        page: 'feedback.html',
+        libre: false, // Solo al final
         games: []
     }
 ];
@@ -135,23 +162,23 @@ const experiencias = [
 // Configuración de fotos para la galería
 const memoriasViaje = [
     {
-        image: 'assets/memories/llegada.jpg',
+        image: '../assets/memories/llegada.jpg',
         caption: 'Llegada al paraíso'
     },
     {
-        image: 'assets/memories/snorkel.jpg',
+        image: '../assets/memories/snorkel.jpg',
         caption: 'Exploradores marinos'
     },
     {
-        image: 'assets/memories/spa.jpg',
+        image: '../assets/memories/spa.jpg',
         caption: 'Momento zen'
     },
     {
-        image: 'assets/memories/sunset.jpg',
+        image: '../assets/memories/sunset.jpg',
         caption: 'Sunset crew'
     },
     {
-        image: 'assets/memories/mision.jpg',
+        image: '../assets/memories/mision.jpg',
         caption: 'Misión cumplida'
     }
 ];

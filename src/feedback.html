@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback - Maldives VIP Experience</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    
+    <div class="experience-page">
+        <div class="experience-header">
+            <div class="icon">📝</div>
+            <h1>Opinión de la Experiencia</h1>
+            <p>Tu opinión importa. Comparte tu experiencia VIP con nosotros.</p>
+        </div>
+        
+        <form id="feedbackForm" class="feedback-form" style="max-width: 700px; margin: 0 auto;">
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="valoracion">Valoración del viaje (1-5 estrellas)</label>
+                <select id="valoracion" name="valoracion" required>
+                    <option value="">Selecciona...</option>
+                    <option value="1">⭐ 1 estrella</option>
+                    <option value="2">⭐⭐ 2 estrellas</option>
+                    <option value="3">⭐⭐⭐ 3 estrellas</option>
+                    <option value="4">⭐⭐⭐⭐ 4 estrellas</option>
+                    <option value="5">⭐⭐⭐⭐⭐ 5 estrellas</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="actividadFavorita">Actividad favorita</label>
+                <input type="text" id="actividadFavorita" name="actividadFavorita" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="nivelDiversion">Nivel de diversión</label>
+                <select id="nivelDiversion" name="nivelDiversion" required>
+                    <option value="">Selecciona...</option>
+                    <option value="Muy divertido">Muy divertido</option>
+                    <option value="Divertido">Divertido</option>
+                    <option value="Normal">Normal</option>
+                    <option value="Poco divertido">Poco divertido</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="repetiria">¿Repetirías el viaje?</label>
+                <select id="repetiria" name="repetiria" required>
+                    <option value="">Selecciona...</option>
+                    <option value="Sí">Sí, definitivamente</option>
+                    <option value="Tal vez">Tal vez</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="comentario">Comentario</label>
+                <textarea id="comentario" name="comentario" rows="5"></textarea>
+            </div>
+            
+            <button type="submit" class="btn-primary" style="width: 100%;">
+                Enviar opinión
+            </button>
+        </form>
+    </div>
+    
+    <script src="experiencias.js"></script>
+    <script src="supabase.js"></script>
+    <script src="shared.js"></script>
+    <script>
+        const EXP_INDEX = 8;
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            crearNavegacion('📝 Feedback');
+            
+            document.getElementById('feedbackForm').addEventListener('submit', enviarFeedback);
+        });
+        
+        async function enviarFeedback(event) {
+            event.preventDefault();
+            
+            const formData = {
+                nombre: document.getElementById('nombre').value,
+                valoracion: parseInt(document.getElementById('valoracion').value),
+                actividadFavorita: document.getElementById('actividadFavorita').value,
+                nivelDiversion: document.getElementById('nivelDiversion').value,
+                repetiria: document.getElementById('repetiria').value,
+                comentario: document.getElementById('comentario').value
+            };
+
+            // Intentar guardar en Supabase
+            if (typeof guardarFeedback === 'function') {
+                const resultado = await guardarFeedback(formData);
+                
+                if (resultado.success) {
+                    mostrarNotificacion('¡Gracias por tu opinión! 💙', 'success');
+                } else {
+                    mostrarNotificacion('Guardado localmente (Supabase no configurado)', 'info');
+                    console.log('Feedback:', formData);
+                }
+            } else {
+                mostrarNotificacion('¡Gracias por tu opinión! 💙', 'success');
+                console.log('Feedback:', formData);
+            }
+            
+            marcarExperienciaCompletada(EXP_INDEX);
+            
+            setTimeout(() => {
+                mostrarMensajeFinal();
+            }, 2000);
+        }
+        
+        function mostrarMensajeFinal() {
+            const container = document.querySelector('.experience-page');
+            container.innerHTML = `
+                <div class="experience-header" style="padding: 4rem 2rem;">
+                    <div class="icon">✨</div>
+                    <h1>Misión Cumplida</h1>
+                    <p style="font-size: 1.5rem; margin: 2rem 0;">
+                        Gracias por ser parte de esta experiencia VIP en las Maldivas
+                    </p>
+                    <p style="font-size: 1.2rem; color: var(--ocean-blue);">
+                        Veronica nunca olvidará este viaje 🏝️💙
+                    </p>
+                    <div style="margin-top: 3rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                        <button class="btn-primary" onclick="window.location.href='index.html'">
+                            Volver al inicio
+                        </button>
+                        <button class="btn-primary" onclick="reiniciarProgreso()" style="background: var(--ocean-blue); color: white;">
+                            Comenzar nuevo viaje
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+    </script>
+    
+</body>
+</html>

@@ -8,9 +8,6 @@
     
     <!-- Estilos -->
     <link rel="stylesheet" href="style.css">
-    
-    <!-- Supabase Client -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
     
@@ -23,7 +20,7 @@
             
             <div class="hero-info">
                 <p><strong>Pasajera VIP:</strong> Veronica</p>
-                <p><strong>Empleado de confianza:</strong> <span id="employeeName">[nombre]</span></p>
+                <p><strong>Empleado de confianza:</strong> <span id="employeeName">[Tu nombre]</span></p>
                 <br>
                 <p><strong>Misión:</strong></p>
                 <p>Garantizar que la experiencia Maldives sea inolvidable.</p>
@@ -35,7 +32,7 @@
             
             <!-- Toggle de audio opcional -->
             <div style="margin-top: 1.5rem;">
-                <button onclick="toggleAudio()" class="btn-primary" style="background: rgba(255,255,255,0.2); padding: 0.5rem 1.5rem;">
+                <button id="btnAudio" class="btn-primary" style="background: rgba(255,255,255,0.2); padding: 0.5rem 1.5rem;">
                     🔊 Audio ambiente
                 </button>
             </div>
@@ -43,48 +40,98 @@
     </section>
     
     <!-- ============================================
-         ITINERARIO - BARRA DE PROGRESO
+         ITINERARIO - GRID DE EXPERIENCIAS
          ============================================ -->
     <section id="itinerary" class="itinerary">
         <div class="itinerary-container">
             <h2>📍 Tu Itinerario de Viaje</h2>
-            <div id="progressBar" class="progress-bar">
-                <!-- El itinerario se genera dinámicamente con JavaScript -->
+            <p class="subtitle">Selecciona una experiencia para comenzar tu aventura</p>
+            
+            <div id="experienciasGrid" class="experiencias-grid">
+                <!-- Grid de miniaturas generado dinámicamente -->
             </div>
         </div>
     </section>
     
     <!-- ============================================
-         CONTENIDO PRINCIPAL DINÁMICO
+         FOOTER
          ============================================ -->
-    <main id="mainContent">
-        <!-- El contenido de cada experiencia se carga aquí dinámicamente -->
-    </main>
-    
-    <!-- ============================================
-         MODAL PARA JUEGOS
-         ============================================ -->
-    <div id="gameModal" class="modal">
-        <div class="modal-content">
-            <button id="modalClose" class="modal-close">&times;</button>
-            <div id="modalBody">
-                <!-- Contenido del juego se carga aquí -->
-            </div>
-        </div>
-    </div>
+    <footer class="footer">
+        <p>🏝️ Maldives VIP Experience &copy; 2026</p>
+        <p>Creado con ❤️ para experiencias inolvidables</p>
+    </footer>
     
     <!-- ============================================
          SCRIPTS
          ============================================ -->
-    
-    <!-- Configuración de experiencias -->
     <script src="experiencias.js"></script>
-    
-    <!-- Integración Supabase -->
-    <script src="supabase.js"></script>
-    
-    <!-- Lógica principal de la aplicación -->
-    <script src="script.js"></script>
+    <script src="shared.js"></script>
+    <script>
+        // Inicializar página principal
+        document.addEventListener('DOMContentLoaded', () => {
+            cargarProgreso();
+            generarGridExperiencias();
+            
+            // Botón comenzar viaje
+            document.getElementById('btnComenzarViaje').addEventListener('click', () => {
+                document.getElementById('itinerary').scrollIntoView({ behavior: 'smooth' });
+            });
+            
+            // Toggle audio
+            document.getElementById('btnAudio').addEventListener('click', toggleAudio);
+        });
+        
+        function generarGridExperiencias() {
+            const grid = document.getElementById('experienciasGrid');
+            const progreso = obtenerProgreso();
+            
+            experiencias.forEach((exp, index) => {
+                const card = document.createElement('div');
+                card.className = 'exp-card';
+                
+                // Determinar si está bloqueada
+                const esLibre = exp.libre === true;
+                const estaDesbloqueada = index === 0 || progreso.completedSteps.includes(index - 1) || esLibre;
+                const estaCompletada = progreso.completedSteps.includes(index);
+                
+                if (!estaDesbloqueada) {
+                    card.classList.add('locked');
+                }
+                
+                if (estaCompletada) {
+                    card.classList.add('completed');
+                }
+                
+                const statusIcon = estaCompletada ? '✅' : (estaDesbloqueada ? '' : '🔒');
+                
+                card.innerHTML = `
+                    <div class="exp-icon">${exp.icon}</div>
+                    <div class="exp-overlay">
+                        <h3>${exp.title}</h3>
+                        <p>${exp.description}</p>
+                        ${statusIcon ? `<div class="exp-status">${statusIcon}</div>` : ''}
+                    </div>
+                `;
+                
+                if (estaDesbloqueada) {
+                    card.style.cursor = 'pointer';
+                    card.addEventListener('click', () => {
+                        window.location.href = exp.page;
+                    });
+                } else {
+                    card.title = 'Completa la experiencia anterior para desbloquear';
+                }
+                
+                grid.appendChild(card);
+            });
+        }
+        
+        function toggleAudio() {
+            const isEnabled = !localStorage.getItem('audioEnabled') || localStorage.getItem('audioEnabled') === 'false';
+            localStorage.setItem('audioEnabled', isEnabled);
+            mostrarNotificacion(isEnabled ? '🔊 Audio activado' : '🔇 Audio desactivado');
+        }
+    </script>
     
 </body>
 </html>

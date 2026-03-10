@@ -350,25 +350,346 @@ section {
     }
 }
 
-/* Responsive */
+/* ============================================
+   NUEVO DISEÑO MULTI-PÁGINA
+   ============================================ */
+
+/* Navegación superior */
+.top-nav {
+    background: var(--white);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 1rem 0;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-home {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: var(--ocean-blue);
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.nav-home:hover {
+    color: var(--turquoise);
+}
+
+.nav-icon {
+    font-size: 1.5rem;
+}
+
+.nav-current {
+    color: var(--text-dark);
+    font-size: 1rem;
+}
+
+.btn-nav {
+    background: var(--turquoise);
+    color: var(--text-dark);
+    padding: 0.6rem 1.5rem;
+    border: none;
+    border-radius: 25px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.btn-nav:hover {
+    background: var(--ocean-blue);
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+/* Grid de experiencias (página principal) */
+.subtitle {
+    text-align: center;
+    color: var(--text-dark);
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+.experiencias-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.exp-card {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    background: var(--white);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    text-align: center;
+}
+
+.exp-card:not(.locked):hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+.exp-card.locked {
+    opacity: 0.5;
+    background: linear-gradient(135deg, #e0e0e0 0%, #f5f5f5 100%);
+    cursor: not-allowed;
+}
+
+.exp-card.completed {
+    border: 3px solid var(--turquoise);
+}
+
+.exp-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    filter: grayscale(0);
+}
+
+.exp-card.locked .exp-icon {
+    filter: grayscale(100%);
+}
+
+.exp-overlay h3 {
+    color: var(--ocean-blue);
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+}
+
+.exp-overlay p {
+    color: var(--text-dark);
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.exp-status {
+    margin-top: 1rem;
+    font-size: 2rem;
+}
+
+/* Grid de juegos (páginas individuales) */
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.game-card {
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.game-card.completed {
+    border: 2px solid var(--turquoise);
+}
+
+.game-card.completed::after {
+    content: '✓';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--turquoise);
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.game-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.game-info {
+    padding: 1.2rem;
+}
+
+.game-info h3 {
+    color: var(--ocean-blue);
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.game-info p {
+    color: var(--text-dark);
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* Contenedor de experiencia individual */
+.experience-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+}
+
+.experience-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.experience-header h1 {
+    color: var(--ocean-blue);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.experience-header .icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.experience-header p {
+    font-size: 1.2rem;
+    color: var(--text-dark);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Estilos mejorados para modal de juegos */
+.modal-body {
+    padding: 1rem 0;
+}
+
+.game-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    color: var(--text-dark);
+}
+
+#gameInput {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid var(--sand-beige);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    margin-bottom: 1rem;
+    resize: vertical;
+    transition: border-color 0.3s ease;
+}
+
+#gameInput:focus {
+    outline: none;
+    border-color: var(--turquoise);
+}
+
+.game-choices {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.btn-choice {
+    background: var(--white);
+    color: var(--ocean-blue);
+    padding: 1rem;
+    border: 2px solid var(--turquoise);
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-choice:hover {
+    background: var(--turquoise);
+    color: var(--text-dark);
+    transform: translateX(5px);
+}
+
+.timer-display {
+    font-size: 5rem;
+    text-align: center;
+    color: var(--ocean-blue);
+    font-weight: bold;
+    margin: 2rem 0;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Footer */
+.footer {
+    background: var(--ocean-blue);
+    color: var(--white);
+    text-align: center;
+    padding: 2rem;
+    margin-top: 4rem;
+}
+
+.footer p {
+    margin: 0.5rem 0;
+}
+
+/* Botón de progreso/completar */
+.btn-completar-experiencia {
+    display: block;
+    margin: 3rem auto;
+    padding: 1rem 3rem;
+    font-size: 1.1rem;
+}
+
+/* Responsive para nuevo diseño */
 @media (max-width: 768px) {
-    .hero h1 {
-        font-size: 2rem;
+    .nav-current {
+        display: none;
     }
     
-    .hero-info {
-        font-size: 1rem;
+    .experiencias-grid {
+        grid-template-columns: 1fr;
     }
     
-    .progress-bar {
-        overflow-x: auto;
+    .games-grid {
+        grid-template-columns: 1fr;
     }
     
-    .section-title {
+    .experience-header h1 {
         font-size: 1.8rem;
     }
     
-    .activities-grid {
-        grid-template-columns: 1fr;
+    .nav-container {
+        padding: 0 1rem;
+    }
+    
+    .btn-nav {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
     }
 }
