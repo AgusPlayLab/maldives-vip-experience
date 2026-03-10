@@ -52,22 +52,23 @@ La página [checkin.html](checkin.html) simula un proceso de check-in de aeropue
 
 - **Diseño tropical** inspirado en Maldivas con gradientes turquesa y sunset
 - **Validación de pasajero** con animaciones de carga
-- **Generación dinámica de QR code** que enlaza a la experiencia completa
+- **QR code estático de alta calidad** que enlaza a la experiencia completa (250x250px, fácil de escanear)
 - **Mensajes del resort** para mayor inmersión
 - **Mobile-first** y completamente responsive
 
 **Características técnicas:**
-- HTML/CSS/JS vanilla (sin frameworks)
-- Librería QRCode.js para generar códigos QR
+- HTML/CSS/JS vanilla (sin frameworks ni librerías externas)
+- QR code generado mediante API (QR Server) - sin dependencias JavaScript
 - Animaciones CSS suaves y elegantes
 - Compatible con GitHub Pages sin configuración adicional
+- Alto contraste para fácil lectura del código QR
 
 **Flujo de usuario:**
 1. Ver información del pasajero (Veronica → Maldives)
 2. Click en "Validate Boarding Pass"
 3. Estado de carga con spinner
 4. Confirmación de verificación exitosa
-5. Generación automática de QR code
+5. Visualización automática del QR code
 6. Opción de reiniciar validación
 
 ## 🚀 Inicio Rápido

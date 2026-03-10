@@ -244,11 +244,12 @@
         .qr-container {
             display: none;
             text-align: center;
-            background: white;
-            padding: 2rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 2.5rem;
             border-radius: 16px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.15);
             margin-bottom: 1.5rem;
+            border: 2px solid rgba(0, 131, 143, 0.1);
         }
 
         .qr-container.active {
@@ -268,22 +269,22 @@
         }
 
         .qr-title {
-            color: #333;
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
+            color: #00838f;
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
         }
 
-        #qrcode {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 1rem auto;
-        }
-
-        #qrcode img {
+        .qr-image {
+            display: block;
+            margin: 0 auto;
+            width: 280px;
+            height: 280px;
             border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+            background: white;
+            padding: 25px;
+            border: 3px solid white;
         }
 
         .hidden {
@@ -366,7 +367,9 @@
         <!-- QR Code Container -->
         <div id="qrContainer" class="qr-container">
             <p class="qr-title">🎫 Scan this QR to begin your Maldives VIP journey</p>
-            <div id="qrcode"></div>
+            <img src="assets/images/maldives-vip-experience.jpg" 
+                 alt="QR Code to Maldives VIP Experience" 
+                 class="qr-image">
         </div>
 
         <!-- Restart Button -->
@@ -375,9 +378,6 @@
         </button>
     </div>
 
-    <!-- QR Code Library -->
-    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
-
     <script>
         const validateBtn = document.getElementById('validateBtn');
         const restartBtn = document.getElementById('restartBtn');
@@ -385,7 +385,6 @@
         const loadingState = document.getElementById('loadingState');
         const successCard = document.getElementById('successCard');
         const qrContainer = document.getElementById('qrContainer');
-        const qrcodeDiv = document.getElementById('qrcode');
 
         validateBtn.addEventListener('click', startValidation);
         restartBtn.addEventListener('click', restartValidation);
@@ -402,28 +401,12 @@
                 loadingState.classList.remove('active');
                 successCard.classList.add('active');
 
-                // After showing success, generate QR and show restart button
+                // After showing success, show QR and restart button
                 setTimeout(() => {
-                    generateQRCode();
                     qrContainer.classList.add('active');
                     restartBtn.classList.remove('hidden');
                 }, 500);
             }, 1500);
-        }
-
-        function generateQRCode() {
-            // Clear previous QR if exists
-            qrcodeDiv.innerHTML = '';
-
-            // Generate new QR code
-            new QRCode(qrcodeDiv, {
-                text: 'https://agusplaylab.github.io/maldives-vip-experience/',
-                width: 200,
-                height: 200,
-                colorDark: '#00838f',
-                colorLight: '#ffffff',
-                correctLevel: QRCode.CorrectLevel.H
-            });
         }
 
         function restartValidation() {
@@ -431,9 +414,6 @@
             successCard.classList.remove('active');
             qrContainer.classList.remove('active');
             restartBtn.classList.add('hidden');
-
-            // Clear QR code
-            qrcodeDiv.innerHTML = '';
 
             // Show initial card again
             setTimeout(() => {
