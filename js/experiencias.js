@@ -99,6 +99,12 @@ const experiencias = [
                 type: 'timer',
                 duration: 10,
                 image: '../assets/images/spa.jpg'
+            },
+            {
+                title: 'Ritual de aceites tropicales',
+                description: 'El spa os entrega una prenda ligera y os invita a reclinaros. Aceites de coco y ylang-ylang calientan la piel al ritmo del oleaje. Dejad que el ritual haga el resto.',
+                type: 'interactive',
+                image: '../assets/images/spa.jpg'
             }
         ]
     },
