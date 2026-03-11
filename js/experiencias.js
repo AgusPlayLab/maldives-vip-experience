@@ -48,9 +48,22 @@ const experiencias = [
         libre: false,
         games: [
             {
-                title: 'Bienvenida a tu villa',
-                description: 'Explorar la villa y compartir: ¿Cuál es tu rincón favorito?',
-                type: 'text',
+                title: 'Exploración de la villa',
+                description: 'Recorred cada rincón de vuestro hogar sobre el agua. La terraza, la bañera exterior, la cama con dosel... ¿cuál os roba el aliento primero?',
+                type: 'interactive',
+                image: '../assets/images/villa.jpg'
+            },
+            {
+                title: 'Look tropical',
+                description: 'El armario de la villa os espera. Elegid vuestro primer look en el paraíso.',
+                type: 'choice',
+                options: ['Bikini + pareo suelto', 'Pareo estilo vestido', 'Bañador minimalista', 'Look de noche elegante'],
+                image: '../assets/images/villa.jpg'
+            },
+            {
+                title: 'Brindis en la terraza',
+                description: 'El sol deslumbra sobre el océano Índico. Salid a la terraza, respirad el aire salado y alzad la copa. Este momento es de usted.',
+                type: 'interactive',
                 image: '../assets/images/villa.jpg'
             }
         ]
