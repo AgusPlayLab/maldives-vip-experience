@@ -14,16 +14,16 @@ const experiencias = [
         games: [
             {
                 title: 'Control de seguridad',
-                description: 'Antes de despegar, tomad el pulso al otro durante 5 segundos. ¿Lo notáis acelerado? El viaje ya ha empezado.',
+                description: 'Antes de despegar, tomamos el pulso a la pasajera VIP durante 5 segundos. ¿Lo notas acelerado? El viaje ya ha empezado.',
                 type: 'timer',
                 duration: 5,
                 image: '../assets/images/vuelo.jpg'
             },
             {
                 title: '¿Qué te emociona más?',
-                description: 'Cada uno elige lo que más le atrae de este viaje. Sin pensar demasiado.',
+                description: 'Elige lo que más le atrae de este viaje. Sin pensar demasiado.',
                 type: 'choice',
-                options: ['El océano índico', 'La villa sobre el agua', 'Desconectar juntos', 'Lo que no está planeado'],
+                options: ['El océano índico', 'La villa sobre el agua', 'Desconectar del mundo', 'Lo que no está planeado'],
                 image: '../assets/images/vuelo.jpg'
             }
         ]
@@ -38,15 +38,15 @@ const experiencias = [
         libre: false, // Requiere completar anterior
         games: [
             {
-                title: 'Vista desde el cielo',
-                description: 'Observa las islas desde arriba. ¿Cuántas tonalidades de azul puedes identificar?',
+                title: 'Tu isla desierta',
+                description: 'Mirad por la ventana. Ahí abajo hay cientos de islas. Si tuvieras que elegir una para quedaros solos, ¿qué os llevaríais?',
                 type: 'choice',
-                options: ['2-3', '4-5', '6 o más'],
+                options: ['Música y una hamaca', 'Comida y vino', 'Solo lo puesto', 'Al sirviente'],
                 image: '../assets/images/hidroavion.jpg'
             },
             {
                 title: 'Susurro de cabina',
-                description: 'Acercaos. Uno le dice al otro al oído una cosa que espera que pase en este viaje. Solo lo escucha quien debe escucharlo.',
+                description: 'Acércate. Uno le dice al otro al oído una cosa que espera que pase en este viaje. Solo lo escucha quien debe escucharlo.',
                 type: 'interactive',
                 image: '../assets/images/hidroavion.jpg'
             }
