@@ -93,20 +93,14 @@ const experiencias = [
         games: [
             {
                 title: 'Snorkel',
-                description: 'Explora el arrecife de coral. Imagina que ves peces tropicales de colores brillantes.',
+                description: 'Estás bajo el agua rodeada de peces de colores, tortugas y corales brillantes... un momento, ¿qué es eso que se acerca? ¡Corre! 😈',
                 type: 'interactive',
                 image: '../assets/images/playa.jpg'
             },
             {
-                title: 'Paseo por la playa',
-                description: 'Camina descalzo por la arena. Describe cómo te sientes.',
-                type: 'text',
-                image: '../assets/images/playa.jpg'
-            },
-            {
-                title: 'Aventura en la isla',
-                description: 'Descubre los secretos de la isla. ¿Qué tesoro encontrarías?',
-                type: 'text',
+                title: 'Paseo por la orilla',
+                description: 'Descalzos, con los pies en el agua. El sol cae sobre la espalda y el agua está tibia. Caminad hasta donde os lleve la marea.',
+                type: 'interactive',
                 image: '../assets/images/playa.jpg'
             }
         ]
