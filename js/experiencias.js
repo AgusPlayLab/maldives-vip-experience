@@ -10,7 +10,7 @@ const experiencias = [
         description: 'El viaje comienza. Prepárate para una experiencia inolvidable.',
         image: 'assets/images/vuelo.jpg',
         page: 'vuelo.html',
-        libre: true, // Siempre accesible
+        libre: false,
         games: [
             {
                 title: 'Bienvenida al vuelo',
@@ -62,7 +62,7 @@ const experiencias = [
         description: 'Aventuras bajo el sol. Snorkel, exploración y diversión.',
         image: 'assets/images/playa.jpg',
         page: 'actividades.html',
-        libre: true, // Actividades siempre disponibles
+        libre: false,
         games: [
             {
                 title: 'Snorkel',
@@ -91,7 +91,7 @@ const experiencias = [
         description: 'Momento de relajación total. Masajes y aromaterapia con vista al océano.',
         image: 'assets/images/spa.jpg',
         page: 'spa.html',
-        libre: true, // Spa siempre disponible para relajarse
+        libre: false,
         games: [
             {
                 title: 'Respiración profunda',
@@ -99,23 +99,6 @@ const experiencias = [
                 type: 'timer',
                 duration: 10,
                 image: '../assets/images/spa.jpg'
-            }
-        ]
-    },
-    {
-        id: 'cena',
-        title: 'Cena en la playa',
-        icon: '🍽️',
-        description: 'Gastronomía bajo las estrellas. Sabores exquisitos frente al mar.',
-        image: 'assets/images/cena.jpg',
-        page: 'cena.html',
-        libre: false,
-        games: [
-            {
-                title: 'Brindis especial',
-                description: 'Cada viajero dice algo positivo sobre el viaje. ¿Qué destacarías tú?',
-                type: 'text',
-                image: '../assets/images/cena.jpg'
             }
         ]
     },
@@ -138,13 +121,30 @@ const experiencias = [
         ]
     },
     {
+        id: 'cena',
+        title: 'Cena en la playa',
+        icon: '🍽️',
+        description: 'Gastronomía bajo las estrellas. Sabores exquisitos frente al mar.',
+        image: 'assets/images/cena.jpg',
+        page: 'cena.html',
+        libre: false,
+        games: [
+            {
+                title: 'Brindis especial',
+                description: 'Cada viajero dice algo positivo sobre el viaje. ¿Qué destacarías tú?',
+                type: 'text',
+                image: '../assets/images/cena.jpg'
+            }
+        ]
+    },
+    {
         id: 'album',
         title: 'Álbum del viaje',
         icon: '📸',
         description: 'Recuerdos capturados. Las mejores fotos de tu aventura.',
         image: 'assets/images/album.jpg',
         page: 'album.html',
-        libre: true, // Siempre puede ver el álbum
+        libre: false,
         games: []
     },
     {

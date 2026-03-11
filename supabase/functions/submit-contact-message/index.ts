@@ -19,17 +19,19 @@ async function sendNotificationEmail(
 }
 
 Deno.serve(async (req: Request) => {
-  const origin = req.headers.get("origin") || "*";
+  const rawOrigin = req.headers.get("origin");
+  const allowedOrigin = (!rawOrigin || rawOrigin === "null") ? "*" : rawOrigin;
+
   const corsHeaders = {
-    "Access-Control-Allow-Origin": origin,
+    "Access-Control-Allow-Origin": allowedOrigin,
     "Access-Control-Allow-Methods": "POST, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type, Authorization",
+    "Access-Control-Allow-Headers": "Content-Type, Authorization, apikey",
     "Access-Control-Max-Age": "600",
     "Content-Type": "application/json",
   };
 
   if (req.method === "OPTIONS") {
-    return new Response(JSON.stringify({ ok: true }), { status: 204, headers: corsHeaders });
+    return new Response(null, { status: 204, headers: corsHeaders });
   }
   if (req.method !== "POST") {
     return new Response(JSON.stringify({ error: "Method not allowed" }), { status: 405, headers: corsHeaders });
