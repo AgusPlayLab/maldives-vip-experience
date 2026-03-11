@@ -312,3 +312,19 @@ function obtenerPorcentajeCompletado() {
     const completados = progreso.completedSteps.length;
     return Math.round((completados / total) * 100);
 }
+
+/**
+ * Inicializa audio ambiente en páginas interiores
+ */
+function initAudio() {
+    if (localStorage.getItem('audioEnabled') !== 'true') return;
+    if (document.getElementById('audioAmbiente')) return; // ya existe en index.html
+    const audio = document.createElement('audio');
+    audio.src = '../assets/audio/ambiente.mp3';
+    audio.loop = true;
+    audio.volume = 0.5;
+    document.body.appendChild(audio);
+    audio.play().catch(() => {});
+}
+
+document.addEventListener('DOMContentLoaded', initAudio);
