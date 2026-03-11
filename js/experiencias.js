@@ -13,9 +13,17 @@ const experiencias = [
         libre: false,
         games: [
             {
-                title: 'Bienvenida al vuelo',
-                description: 'Comparte tu entusiasmo: ¿Qué es lo que más te emociona de este viaje?',
-                type: 'text',
+                title: 'Control de seguridad',
+                description: 'Antes de despegar, tomad el pulso al otro durante 5 segundos. ¿Lo notáis acelerado? El viaje ya ha empezado.',
+                type: 'timer',
+                duration: 5,
+                image: '../assets/images/vuelo.jpg'
+            },
+            {
+                title: '¿Qué te emociona más?',
+                description: 'Cada uno elige lo que más le atrae de este viaje. Sin pensar demasiado.',
+                type: 'choice',
+                options: ['El océano índico', 'La villa sobre el agua', 'Desconectar juntos', 'Lo que no está planeado'],
                 image: '../assets/images/vuelo.jpg'
             }
         ]
@@ -34,6 +42,12 @@ const experiencias = [
                 description: 'Observa las islas desde arriba. ¿Cuántas tonalidades de azul puedes identificar?',
                 type: 'choice',
                 options: ['2-3', '4-5', '6 o más'],
+                image: '../assets/images/hidroavion.jpg'
+            },
+            {
+                title: 'Susurro de cabina',
+                description: 'Acercaos. Uno le dice al otro al oído una cosa que espera que pase en este viaje. Solo lo escucha quien debe escucharlo.',
+                type: 'interactive',
                 image: '../assets/images/hidroavion.jpg'
             }
         ]
