@@ -151,6 +151,7 @@
                 btn.textContent = '🔊 Audio ambiente';
                 mostrarNotificacion('🔇 Audio desactivado');
             } else {
+                audio.load();
                 audio.play().catch(() => {});
                 localStorage.setItem('audioEnabled', 'true');
                 btn.textContent = '🔇 Audio ambiente';

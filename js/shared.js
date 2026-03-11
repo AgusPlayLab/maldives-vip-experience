@@ -315,16 +315,32 @@ function obtenerPorcentajeCompletado() {
 
 /**
  * Inicializa audio ambiente en páginas interiores
+ * En móvil el autoplay requiere un gesto del usuario,
+ * por eso esperamos al primer click/touch en lugar de DOMContentLoaded.
  */
 function initAudio() {
     if (localStorage.getItem('audioEnabled') !== 'true') return;
     if (document.getElementById('audioAmbiente')) return; // ya existe en index.html
+
     const audio = document.createElement('audio');
+    audio.id = 'audioAmbiente';
     audio.src = '../assets/audio/ambiente.mp3';
     audio.loop = true;
     audio.volume = 0.5;
+    audio.preload = 'auto';
     document.body.appendChild(audio);
-    audio.play().catch(() => {});
+
+    // Intento inmediato (funciona en PC)
+    audio.play().catch(() => {
+        // En móvil esperamos el primer gesto del usuario
+        const desbloquear = () => {
+            audio.play().catch(() => {});
+            document.removeEventListener('touchstart', desbloquear);
+            document.removeEventListener('click', desbloquear);
+        };
+        document.addEventListener('touchstart', desbloquear, { once: true });
+        document.addEventListener('click', desbloquear, { once: true });
+    });
 }
 
 document.addEventListener('DOMContentLoaded', initAudio);
