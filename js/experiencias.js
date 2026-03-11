@@ -144,6 +144,12 @@ const experiencias = [
                 type: 'timer',
                 duration: 5,
                 image: '../assets/images/atardecer.jpg'
+            },
+            {
+                title: 'Algo bonito',
+                description: 'El cielo se tiñe de naranja y rosa. Mientras el sol desaparece, mirad a la pasajera VIP y decidle en voz alta algo de ella que os resulte especialmente irresistible.',
+                type: 'interactive',
+                image: '../assets/images/atardecer.jpg'
             }
         ]
     },
