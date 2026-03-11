@@ -20,7 +20,7 @@
             
             <div class="hero-info">
                 <p><strong>Pasajera VIP:</strong> Verónica Forner</p>
-                <p><strong>Acompañante:</strong> <span id="employeeName">Agus Palomo Spain</span></p>
+                <p><strong>Empleado de confianza:</strong> <span id="employeeName">Agus Palomo Spain</span></p>
                 <br>
                 <p><strong>Misión:</strong></p>
                 <p>Garantizar que la experiencia Maldives sea inolvidable.</p>
@@ -64,6 +64,8 @@
     <!-- ============================================
          SCRIPTS
          ============================================ -->
+    <audio id="audioAmbiente" loop src="assets/audio/ambiente.mp3"></audio>
+
     <script src="js/experiencias.js"></script>
     <script src="js/shared.js"></script>
     <script>
@@ -79,6 +81,7 @@
             
             // Toggle audio
             document.getElementById('btnAudio').addEventListener('click', toggleAudio);
+            inicializarBtnAudio();
         });
         
         function generarGridExperiencias() {
@@ -126,10 +129,33 @@
             });
         }
         
+        function inicializarBtnAudio() {
+            const enabled = localStorage.getItem('audioEnabled') === 'true';
+            const btn = document.getElementById('btnAudio');
+            const audio = document.getElementById('audioAmbiente');
+            if (enabled) {
+                audio.play().catch(() => {});
+                btn.textContent = '🔇 Audio ambiente';
+            } else {
+                btn.textContent = '🔊 Audio ambiente';
+            }
+        }
+
         function toggleAudio() {
-            const isEnabled = !localStorage.getItem('audioEnabled') || localStorage.getItem('audioEnabled') === 'false';
-            localStorage.setItem('audioEnabled', isEnabled);
-            mostrarNotificacion(isEnabled ? '🔊 Audio activado' : '🔇 Audio desactivado');
+            const audio = document.getElementById('audioAmbiente');
+            const btn = document.getElementById('btnAudio');
+            const enabled = localStorage.getItem('audioEnabled') === 'true';
+            if (enabled) {
+                audio.pause();
+                localStorage.setItem('audioEnabled', 'false');
+                btn.textContent = '🔊 Audio ambiente';
+                mostrarNotificacion('🔇 Audio desactivado');
+            } else {
+                audio.play().catch(() => {});
+                localStorage.setItem('audioEnabled', 'true');
+                btn.textContent = '🔇 Audio ambiente';
+                mostrarNotificacion('🔊 Audio activado');
+            }
         }
     </script>
     
