@@ -163,9 +163,15 @@ const experiencias = [
         libre: false,
         games: [
             {
-                title: 'Brindis especial',
-                description: 'Cada viajero dice algo positivo sobre el viaje. ¿Qué destacarías tú?',
-                type: 'text',
+                title: 'El vestido de la noche',
+                description: 'La cena frente al mar merece un look especial. Imaginad a la pasajera VIP con un vestido ligero de malla que deja entrever sutilmente los detalles del conjunto que lleva debajo. Tomad unos segundos para observar el look completo y decidle qué detalle os gusta más.',
+                type: 'interactive',
+                image: '../assets/images/cena.jpg'
+            },
+            {
+                title: 'Dulce tentación',
+                description: 'El postre llega acompañado del aroma del mar y las velas de la mesa. Antes de probarlo, mirad a la pasajera VIP y decidle si el postre parece más tentador… o si hay algo en la mesa que lo supera.',
+                type: 'interactive',
                 image: '../assets/images/cena.jpg'
             }
         ]
